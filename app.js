@@ -53,3 +53,9 @@ document.querySelector("#clear").addEventListener("click", () => {
     displayContent = "";
     display.textContent = 0;
 })
+
+document.querySelectorAll(".operator").forEach(op => {
+    op.addEventListener("click", () => {
+       operator = op.textContent; 
+    })
+})
