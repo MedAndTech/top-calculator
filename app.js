@@ -30,6 +30,20 @@ function operate(operator, a, b) {
     }
 }
 
+function populateDisplay(number) {
+    displayContent += number
+    display.textContent = displayContent;
+}
+
+const display = document.querySelector("#display");
+let displayContent = "";
 let a = 0;
 let b = 0;
 let operator = "";
+
+
+document.querySelectorAll(".number").forEach(number => {
+    number.addEventListener("click", () =>{
+     populateDisplay(number.textContent)
+     });
+});
