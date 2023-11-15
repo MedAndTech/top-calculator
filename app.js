@@ -1,5 +1,5 @@
 function add(a, b) {
-    return a + b;
+    return +a + +b;
 }
 
 function subtract(a, b) {
@@ -11,27 +11,52 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    if (b === 0 ) return "Not a number";
+    if (b == 0 ) return "Not a number";
     return a / b;
 }
 
 function operate(operator, a, b) {
+    let result = 0;
     switch(operator) {
         case "+":
-            return add(a, b);
+            result = add(a, b);
+            break;
         case "-":
-            return subtract(a, b);
-        case "*":
-            return multiply(a, b);
-        case "/":
-            return divide(a, b);
+            result = subtract(a, b);
+            break;
+        case "×":
+            result = multiply(a, b);
+            break;
+        case "÷":
+            result = divide(a, b);
+            break;
         default:
-            return "Invalid operator";
+            result = "Invalid operator";
+    }
+    if (typeof(result) === "string") {
+        error(result);
+    } else {
+        result = Math.round(result * 100) / 100;
+        display.textContent = result;
+        displayContent = result;
     }
 }
 
-function populateDisplay(number) {
-    displayContent += number
+function error(message) {
+    display.textContent = message;
+    displayContent = ""
+}
+
+function populateDisplay(elem) {
+    if (displayContent == 0 && elem !== ",") {
+        displayContent = elem
+    } else if (elem === ",") {
+        if (!(displayContent.includes(","))) {
+            displayContent += elem;
+        }
+    } else {
+        displayContent += elem
+    }
     display.textContent = displayContent;
 }
 
@@ -56,7 +81,19 @@ document.querySelector("#clear").addEventListener("click", () => {
 
 document.querySelectorAll(".operator").forEach(op => {
     op.addEventListener("click", () => {
-       operator = op.textContent; 
+       operator = op.textContent;
+       a = displayContent; 
+       displayContent = "";
     })
 })
 
+document.querySelector("#equal").addEventListener("click", () => {
+    if (operator !== "") {
+        b = displayContent;
+        operate(operator, a, b);
+    }
+})
+
+document.querySelector("#dot").addEventListener("click", () => {
+    populateDisplay(document.querySelector("#dot").textContent);
+})
