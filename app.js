@@ -35,6 +35,7 @@ function populateDisplay(number) {
     display.textContent = displayContent;
 }
 
+
 const display = document.querySelector("#display");
 let displayContent = "";
 let a = 0;
@@ -43,7 +44,12 @@ let operator = "";
 
 
 document.querySelectorAll(".number").forEach(number => {
-    number.addEventListener("click", () =>{
+    number.addEventListener("click", () => {
      populateDisplay(number.textContent)
      });
 });
+
+document.querySelector("#clear").addEventListener("click", () => {
+    displayContent = "";
+    display.textContent = 0;
+})
