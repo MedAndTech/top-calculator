@@ -59,3 +59,4 @@ document.querySelectorAll(".operator").forEach(op => {
        operator = op.textContent; 
     })
 })
+
