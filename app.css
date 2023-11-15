@@ -42,7 +42,8 @@ button {
 
 .number,
 .operator,
-#dot {
+#dot,
+#equal {
     flex: 0 0 25%;
 }
 
@@ -56,11 +57,13 @@ button {
     background-color: #a8a5a3;
 }
 
-.operator {
+.operator,
+#equal {
     background-color: #ffa10d;
 }
 
-.operator:active {
+.operator:active,
+#equal:active {
     background-color: #cb7e06;
 }
 
